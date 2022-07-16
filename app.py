@@ -8,7 +8,6 @@ import datetime
 import time
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, wrong, login_required, lookup, usd, limit
-import psycopg2
 
 # Configure application
 app = Flask(__name__)
@@ -25,8 +24,8 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = psycopg2.connect(
-    "postgres://zkvuxdelaevakc:9031a7e9620c57d3e5eaaaf7190f4f284dbce24486c967c7ef7685f51ef9783b@ec2-3-219-52-220.compute-1.amazonaws.com:5432/dc72posemha324")
+db = SQL("sqlite:///finance.db")
+
 
 
 @app.after_request
@@ -43,14 +42,14 @@ def after_request(response):
 def index():
     """Show portfolio of stocks"""
     user_id = session["user_id"]
+    tasks =db.execute("SELECT date, hours, minutes, progress, new_aim FROM logbook WHERE user_id = ? GROUP BY date ", user_id)
+   #date = db.execute("SELECT date FROM logbook WHERE user_id = ? ", user_id)
+    #hours = db.execute("SELECT hours FROM logbook WHERE user_id = ? ", user_id)
+    #minutes = db.execute("SELECT minutes FROM logbook WHERE user_id = ? ", user_id)
+    #progress = db.execute("SELECT progress FROM logbook WHERE user_id = ? ", user_id)
+    #new_aim = db.execute("SELECT new_aim FROM logbook WHERE user_id = ? ", user_id)
 
-    stocks = db.execute("SELECT symbol,price, SUM(shares) AS Tshares FROM transactions WHERE user_id = ? GROUP BY symbol", user_id)
-    cash = db.execute("SELECT cash FROM users WHERE id =?", user_id)[0]["cash"]
-    total = cash
-    for stock in stocks:
-        total += stock["price"] * stock["Tshares"]
-
-    return render_template("index.html", stocks=stocks, cash=cash, usd=usd, total=total)
+    return render_template("index.html", tasks=tasks)
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -101,8 +100,8 @@ def buy():
 def history():
     """Show history of transactions"""
     user_id = session["user_id"]
-    #transactions_db = db.execute("SELECT * FROM transactions WHERE user_id= :id", id=user_id)
-    return render_template("history.html"),# transactions=transactions_db)
+    transactions_db = db.execute("SELECT * FROM transactions WHERE user_id= :id", id=user_id)
+    return render_template("history.html", transactions=transactions_db)
 
 
 @app.route("/analyst")
@@ -182,7 +181,18 @@ def logout():
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():
-    pass
+    """Get stock quote."""
+    if request.method == "GET":
+        return render_template("quote.html")
+    else:
+        symbol = request.form.get("symbol")
+    if not symbol:
+        return apology("Give a Symbol")
+    # symbols are in upper case
+    result = lookup(symbol.upper())
+    if result == None:
+        return apology("Symbol is not valid.")
+    return render_template("quoted.html", name=result["name"], price=usd(result["price"]), symbol=result["symbol"])
 
 
 @app.route("/register", methods=["GET", "POST"])
