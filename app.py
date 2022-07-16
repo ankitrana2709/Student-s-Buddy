@@ -49,44 +49,7 @@ def index():
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
-    """Buy shares of stock"""
-
-    if request.method == "POST":
-        symbol = request.form.get("symbol").upper()
-        result = lookup(symbol)
-
-        if not symbol:
-            return apology("Give a Symbol")
-
-        elif not result:
-            return apology("Symbol is not valid.")
-        try:
-            shares = int(request.form.get("shares"))
-        except:
-            return apology("Shares must be integers.")
-        if shares <= 0:
-            return apology("Share number is not valid.")
-        user_id = session["user_id"]
-        item_price = result["price"]
-        item_name = result["name"]
-        symbol = result["symbol"]
-        transaction_value = shares * item_price
-        cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
-
-        if cash < transaction_value:
-            return apology("Not enough Money.")
-        else:
-            date = datetime.datetime.now()
-            updated_cash = cash - transaction_value
-            db.execute("UPDATE users SET cash = ? WHERE id = ?", updated_cash, user_id)
-            # INSERT INTO table
-            db.execute("INSERT INTO transactions (user_id, symbol, shares, price, date) VALUES (?, ?, ?, ?, ?)",
-                       user_id, result["symbol"], shares, item_price, date)
-        message = "Bought! for " + usd(item_price)
-        flash(message)
-        return redirect("/")
-    else:
-        return render_template("buy.html")
+    pass
 
 
 @app.route("/history")
@@ -259,48 +222,5 @@ def Add_Report():
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
-    """Sell shares of stock"""
-    if request.method == "GET":
-        user_id = session["user_id"]
-        symbols_user = db.execute(
-            "SELECT symbol FROM transactions WHERE user_id = :id GROUP BY symbol HAVING SUM(shares) > 0", id=user_id)
-        return render_template("sell.html", symbols=[row["symbol"] for row in symbols_user])
-    else:
-        symbol = request.form.get("symbol")
-        shares = int(request.form.get("shares"))
-
-        if not symbol:
-            return apology("Give a Symbol")
-
-         # symbols are in upper case
-        stock = lookup(symbol.upper())
-
-        if stock == None:
-            return apology("Symbol is not valid.")
-
-        if shares < 0:
-            return apology("Share number is not valid.")
-
-        transaction_value = shares * stock["price"]
-        user_id = session["user_id"]
-        user_cash_db = db.execute("SELECT cash FROM users WHERE id = :id", id=user_id)
-        user_cash = user_cash_db[0]["cash"]
-
-        user_shares = db.execute(
-            "SELECT shares FROM transactions WHERE user_id=:id AND symbol = :symbol GROUP BY symbol", id=user_id, symbol=symbol)
-        user_shares_now = user_shares[0]["shares"]
-
-        if shares > user_shares_now:
-            return apology("Not enough shares!")
-
-        updated_cash = user_cash + transaction_value
-        db.execute("UPDATE users SET cash = ? WHERE id = ?", updated_cash, user_id)
-
-        date = datetime.datetime.now()
-        # INSERT INTO table
-        db.execute("INSERT INTO transactions (user_id, symbol, shares, price, date) VALUES (?, ?, ?, ?, ?)",
-                   user_id, stock["symbol"], (-1)*shares, stock["price"], date)
-
-        flash("Sold!")
-        return redirect("/")
+    pass
 
