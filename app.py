@@ -216,6 +216,7 @@ def Add_Report():
         except:
             return apology("Log already exists")
         flash("Added!")
+        return redirect("/")
 
 
 @app.route("/sell", methods=["GET", "POST"])
