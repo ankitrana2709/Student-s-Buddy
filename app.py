@@ -251,7 +251,8 @@ def Add_Report():
             new_log = db.execute("INSERT INTO logbook (date, hours, minutes, progress, new_aim) VALUES (?,?,?,?,?)", date, hours, minutes, progress, new_aim)
         except:
             return apology("Log already exists")
-        #return redirect("/")
+        flash("Added!")
+        return redirect("/")
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
