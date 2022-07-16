@@ -24,7 +24,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///finance.db")
+db = SQL("sqlite:///buddy.db")
 
 
 
@@ -228,6 +228,7 @@ def Add_Report():
     if request.method == "GET":
         return render_template("Add_Report.html")
     else:
+        date = request.form.get("date")
         hours = request.form.get("hours")
         minutes = request.form.get("minutes")
         progress = request.form.get("progress")
@@ -238,7 +239,7 @@ def Add_Report():
             return apology("hours field is Empty.")
         # to check if password is empty
         if not minutes:
-            return apology("Password field is Empty.")
+            return apology("Minutes field is Empty.")
         # to check if Confirmation is empty
         if not progress:
             return apology("Progress is not Given.")
