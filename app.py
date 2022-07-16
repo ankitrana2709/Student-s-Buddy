@@ -212,7 +212,7 @@ def Add_Report():
         # to check if passwords are not same
         try:
             # INSERT INTO table
-            new_log = db.execute("INSERT INTO user_id, logbook (date, hours, minutes, progress, new_aim) VALUES (?,?,?,?,?,?)", user_id, date, hours, minutes, progress, new_aim)
+            new_log = db.execute("INSERT INTO logbook (user_id, date, hours, minutes, progress, new_aim) VALUES (?,?,?,?,?,?)", user_id, date, hours, minutes, progress, new_aim)
         except:
             return apology("Log already exists")
         flash("Added!")
