@@ -8,6 +8,7 @@ import datetime
 import time
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, wrong, login_required, lookup, usd, limit
+import psycopg2
 
 # Configure application
 app = Flask(__name__)
@@ -24,8 +25,8 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///finance.db")
-
+db = psycopg2.connect(
+    "postgres://zkvuxdelaevakc:9031a7e9620c57d3e5eaaaf7190f4f284dbce24486c967c7ef7685f51ef9783b@ec2-3-219-52-220.compute-1.amazonaws.com:5432/dc72posemha324")
 
 
 @app.after_request
@@ -100,8 +101,8 @@ def buy():
 def history():
     """Show history of transactions"""
     user_id = session["user_id"]
-    transactions_db = db.execute("SELECT * FROM transactions WHERE user_id= :id", id=user_id)
-    return render_template("history.html", transactions=transactions_db)
+    #transactions_db = db.execute("SELECT * FROM transactions WHERE user_id= :id", id=user_id)
+    return render_template("history.html"),# transactions=transactions_db)
 
 
 @app.route("/analyst")
@@ -222,7 +223,7 @@ def register():
 
         try:
             # INSERT INTO table
-            new_user = db.execute("INSERT INTO users (username, hash) VALUES (?,?)", username, hash)
+            new_user = db.execute("INSERT INTO students (username, hash) VALUES (?,?)", username, hash)
         except:
             return apology("Username already exists")
         session["user_id"] = new_user
