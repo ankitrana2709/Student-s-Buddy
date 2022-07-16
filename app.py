@@ -40,19 +40,13 @@ def after_request(response):
 @app.route("/")
 @login_required
 def index():
-    """Show portfolio of stocks"""
     user_id = session["user_id"]
     tasks =db.execute("SELECT date, hours, minutes, progress, new_aim FROM logbook WHERE user_id = ? GROUP BY date ", user_id)
-   #date = db.execute("SELECT date FROM logbook WHERE user_id = ? ", user_id)
-    #hours = db.execute("SELECT hours FROM logbook WHERE user_id = ? ", user_id)
-    #minutes = db.execute("SELECT minutes FROM logbook WHERE user_id = ? ", user_id)
-    #progress = db.execute("SELECT progress FROM logbook WHERE user_id = ? ", user_id)
-    #new_aim = db.execute("SELECT new_aim FROM logbook WHERE user_id = ? ", user_id)
 
     return render_template("index.html", tasks=tasks)
 
 
-@app.route("/buy", methods=["GET", "POST"])
+@app.route("/Add_Report", methods=["GET", "POST"])
 @login_required
 def buy():
     """Buy shares of stock"""
@@ -227,6 +221,36 @@ def register():
         session["user_id"] = new_user
         return redirect("/")
 
+@app.route("/Add_Report", methods=["GET", "POST"])
+@login_required
+def Add_Report():
+    """Register a new report"""
+    if request.method == "GET":
+        return render_template("Add_Report.html")
+    else:
+        hours = request.form.get("hours")
+        minutes = request.form.get("minutes")
+        progress = request.form.get("progress")
+        new_aim = request.form.get("new_aim")
+
+        # to check if it is empty
+        if not hours:
+            return apology("hours field is Empty.")
+        # to check if password is empty
+        if not minutes:
+            return apology("Password field is Empty.")
+        # to check if Confirmation is empty
+        if not progress:
+            return apology("Progress is not Given.")
+        if not new_aim:
+            return apology("You have no Aim.")
+        # to check if passwords are not same
+        try:
+            # INSERT INTO table
+            new_log = db.execute("INSERT INTO logbook (date, hours, minutes, progress, new_aim) VALUES (?,?,?,?,?)", date, hours, minutes, progress, new_aim)
+        except:
+            return apology("Log already exists")
+        return redirect("/")
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
