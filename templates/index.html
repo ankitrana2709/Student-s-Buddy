@@ -17,11 +17,11 @@
         <tbody>
             {% for task in tasks %}
                 <tr>
-                    <td>{{ row["date"] }}</td>
-                    <td>{{ row["hours"] }}</td>
-                    <td>{{ row["minutes"] }}</td>
-                    <td>{{ row["progress"] }}</td>
-                    <td>{{ row["new_aim"] }}</td>
+                    <td>{{ task["date"] }}</td>
+                    <td>{{ task["hours"] }}</td>
+                    <td>{{ task["minutes"] }}</td>
+                    <td>{{ task["progress"] }}</td>
+                    <td>{{ task["new_aim"] }}</td>
                 </tr>
             {% endfor %}
 
