@@ -151,7 +151,7 @@ def login():
             return apology("must provide password", 403)
 
         # Query database for username
-        rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
+        rows = db.execute("SELECT * FROM students WHERE username = ?", request.form.get("username"))
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
@@ -159,7 +159,6 @@ def login():
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
-        #username = db.execute("SELECT username FROM users WHERE id =?", session["user_id"])[0]["username"]
 
         # Redirect user to home page
         return redirect("/")
@@ -183,18 +182,7 @@ def logout():
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():
-    """Get stock quote."""
-    if request.method == "GET":
-        return render_template("quote.html")
-    else:
-        symbol = request.form.get("symbol")
-    if not symbol:
-        return apology("Give a Symbol")
-    # symbols are in upper case
-    result = lookup(symbol.upper())
-    if result == None:
-        return apology("Symbol is not valid.")
-    return render_template("quoted.html", name=result["name"], price=usd(result["price"]), symbol=result["symbol"])
+    pass
 
 
 @app.route("/register", methods=["GET", "POST"])
