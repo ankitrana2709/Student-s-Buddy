@@ -5,13 +5,7 @@
 {% endblock %}
 
 {% block main %}
-    <form action="/action_page.php" method="get" target="_blank">
-        <label for="fname">First name:</label>
-        <input type="text" id="fname" name="fname"><br><br>
-        <label for="lname">Last name:</label>
-        <input type="text" id="lname" name="lname"><br><br>
-        <input type="submit" value="Submit">
-    </form>
-    <img alt="{{ top }}" class="border img-fluid" src="http://memegen.link/custom/{{ top }}/{{ bottom }}.jpg?alt=https://api.memegen.link/images/light.jpg" title="{{ top }}" width = 300>
 
+    <img alt="{{ top }}" class="border img-fluid" src="http://memegen.link/custom/{{ top }}/{{ bottom }}.jpg?alt=https://api.memegen.link/images/light.jpg" title="{{ top }}" width = 300>
+   <div class="loginButtonStyling"> <a href="/login" id="loginButton">Open Login</a></div>
 {% endblock %}

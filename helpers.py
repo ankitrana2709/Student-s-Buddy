@@ -1,8 +1,9 @@
 import os
 import requests
 import urllib.parse
+import time
 
-from flask import redirect, render_template, request, session
+from flask import flash, redirect, render_template, request, session
 from functools import wraps
 
 
@@ -14,6 +15,18 @@ def apology(message, code=400):
             s = s.replace(old, new)
         return s
     return render_template("apology.html", top="Your Buddy responds with " + str(code), bottom=escape(message)), code
+
+def wrong(message, code=400):
+    """Render message as an apology to user."""
+    def escape(s):
+        for old, new in [("-", "--"), (" ", "-"), ("_", "__"), ("?", "~q"),
+                         ("%", "~p"), ("#", "~h"), ("/", "~s"), ("\"", "''")]:
+            s = s.replace(old, new)
+        return s
+    return render_template("wrong.html", top="Your Buddy responds with " + str(code), bottom=escape(message)), code
+
+def limit(message):
+    return render_template("limit.html", message=message)
 
 
 def login_required(f):

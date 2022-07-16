@@ -4,9 +4,6 @@
 {% endblock %}
 
 {% block main %}
-<br><br><br>
-    <img src="/static/404040ferumfaa69e.jpg" width = 200>
-    <br>
     <form action="/login" method="post">
         <div class="mb-3">
             <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
@@ -15,5 +12,8 @@
             <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
         </div>
         <button class="btn btn-primary" type="submit">Log In</button>
+        <div class="pam _3-95 _9ay3 uiBoxRed" role="alert" tabindex="0" id="error_box">
+            <div class="fsl fwb fcb">Wrong credentials</div><div>{{ bottom }}</div>
+        </div>
     </form>
 {% endblock %}
