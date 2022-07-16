@@ -46,7 +46,7 @@ def index():
     return render_template("index.html", tasks=tasks)
 
 
-@app.route("/Add_Report", methods=["GET", "POST"])
+@app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
     """Buy shares of stock"""
