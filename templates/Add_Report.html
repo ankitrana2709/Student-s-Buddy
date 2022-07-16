@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Report
+{% endblock %}
+<form action="/Add_report" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="date" name="Date" placeholder="DD/MM/YYYY" type="date">
+    </div>
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="hours" name="Work-Hours" placeholder="No. of Hours" type="number">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="minutes" name="Work-Minutes" placeholder="Work-Minutes" type="number">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="progress" name="Progress" placeholder="Major Progress" type="text">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="new_aim" name="Next Aim" placeholder="Have One!" type="text">
+    </div>
+    <button class="btn btn-primary" type="submit">Add Report</button>
+</form>
