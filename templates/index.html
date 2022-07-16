@@ -2,30 +2,3 @@
 
 {% block title %}
 {% endblock %}
-
-{% block main %}
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Hours</th>
-            <th scope="col">Minutes</th>
-            <th scope="col">Progress</th>
-            <th scope="col">New Aim</th>
-        </tr>
-        </thead>
-        <tbody>
-            {% for task in tasks %}
-                <tr>
-                    <td>{{ task["date"] }}</td>
-                    <td>{{ task["hours"] }}</td>
-                    <td>{{ task["minutes"] }}</td>
-                    <td>{{ task["progress"] }}</td>
-                    <td>{{ task["new_aim"] }}</td>
-                </tr>
-            {% endfor %}
-
-        </tbody>
-    </table>
-
-{% endblock %}

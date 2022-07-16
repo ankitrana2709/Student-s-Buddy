@@ -40,11 +40,17 @@ def after_request(response):
 @app.route("/")
 @login_required
 def index():
+    #user_id = session["user_id"]
+    #tasks = db.execute("SELECT date, hours, minutes, progress, new_aim FROM logbook WHERE user_id = ? ORDER BY id DESC", user_id)
+    return render_template("index.html")#, tasks=tasks)
+    
+
+@app.route("/My_Report")
+@login_required
+def My_Report():
     user_id = session["user_id"]
-    tasks =db.execute("SELECT date, hours, minutes, progress, new_aim FROM logbook WHERE user_id = ? GROUP BY date", user_id)
-
+    tasks = db.execute("SELECT date, hours, minutes, progress, new_aim FROM logbook WHERE user_id = ? ORDER BY id DESC", user_id)
     return render_template("index.html", tasks=tasks)
-
 
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
@@ -216,7 +222,7 @@ def Add_Report():
         except:
             return apology("Log already exists")
         flash("Added!")
-        return redirect("/")
+        return redirect("/My_Report")
 
 
 @app.route("/sell", methods=["GET", "POST"])
