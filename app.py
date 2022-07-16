@@ -41,7 +41,7 @@ def after_request(response):
 @login_required
 def index():
     user_id = session["user_id"]
-    tasks =db.execute("SELECT date, hours, minutes, progress, new_aim FROM logbook WHERE user_id = ? GROUP BY date ", user_id)
+    tasks =db.execute("SELECT date, hours, minutes, progress, new_aim FROM logbook WHERE user_id = ? GROUP BY date", user_id)
 
     return render_template("index.html", tasks=tasks)
 
@@ -228,6 +228,7 @@ def Add_Report():
     if request.method == "GET":
         return render_template("Add_Report.html")
     else:
+        user_id = session["user_id"]
         date = request.form.get("date")
         hours = request.form.get("hours")
         minutes = request.form.get("minutes")
@@ -248,10 +249,11 @@ def Add_Report():
         # to check if passwords are not same
         try:
             # INSERT INTO table
-            new_log = db.execute("INSERT INTO logbook (date, hours, minutes, progress, new_aim) VALUES (?,?,?,?,?)", date, hours, minutes, progress, new_aim)
+            new_log = db.execute("INSERT INTO user_id, logbook (date, hours, minutes, progress, new_aim) VALUES (?,?,?,?,?,?)", user_id, date, hours, minutes, progress, new_aim)
         except:
             return apology("Log already exists")
         flash("Added!")
+        return redirect("/")
 
 
 @app.route("/sell", methods=["GET", "POST"])
