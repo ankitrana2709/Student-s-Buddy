@@ -142,11 +142,10 @@ def average():
     else:
         user_id = session["user_id"]
 
-        Fhours = db.execute("SELECT SUM(hours) FROM logbook WHERE user_id = ? ", user_id)
-        Chours = db.execute("SELECT COUNT(hours) FROM logbook WHERE user_id = ? ", user_id)
+        Fhours = db.execute("SELECT SUM(hours) FROM logbook WHERE user_id = ? ", user_id)[0]["SUM(hours)"]
+        Chours = db.execute("SELECT COUNT(hours) FROM logbook WHERE user_id = ? ", user_id)[0]["COUNT(hours)"]
         Avg = Fhours / Chours
     return render_template("average.html", Avg=Avg, Fhours=Fhours, Chours=Chours)
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
