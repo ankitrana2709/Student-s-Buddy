@@ -134,18 +134,18 @@ def logout():
     return redirect("/")
 
 
-@app.route("/rewarded", methods=["GET", "POST"])
+@app.route("/average", methods=["GET", "POST"])
 @login_required
-def rewarded():
+def average():
     if request.method == "GET":
-        return render_template("rewarded.html")
+        return render_template("average.html")
     else:
         user_id = session["user_id"]
 
         Fhours = db.execute("SELECT SUM(hours) FROM logbook WHERE user_id = ? ORDER BY id DESC", user_id)
         Chours = db.execute("SELECT COUNT(hours) FROM logbook WHERE user_id = ? ORDER BY id DESC", user_id)
         Avg = Fhours / Chours
-    return render_template("rewarded.html", Avg=Avg, Fhours=Fhours, Chours=Chours)
+    return render_template("average.html", Avg=Avg, Fhours=Fhours, Chours=Chours)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
