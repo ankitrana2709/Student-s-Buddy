@@ -60,10 +60,10 @@ def history():
     return render_template("history.html", transactions=transactions_db)
 
 
-@app.route("/analyst")
+@app.route("/Manage")
 @login_required
-def analyst():
-    return render_template("analyst.html")
+def Manage():
+    return render_template("Manage.html")
 
 
 @app.route("/add_cash", methods=["GET", "POST"])
@@ -216,13 +216,14 @@ def Add_Report():
             return apology("You have no Aim.")
         # to check if passwords are not same
         try:
+            progress = progress.upper()
+            new_aim = new_aim.upper()
             # INSERT INTO table
             new_log = db.execute("INSERT INTO logbook (user_id, date, hours, minutes, progress, new_aim) VALUES (?,?,?,?,?,?)", user_id, date, hours, minutes, progress, new_aim)
         except:
             return apology("Log already exists")
         flash("Added!")
         return redirect("/My_Report")
-
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
