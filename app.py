@@ -60,10 +60,10 @@ def history():
     return render_template("history.html", transactions=transactions_db)
 
 
-@app.route("/Four_Boons")
+@app.route("/boons")
 @login_required
-def Four_Boons():
-    return render_template("Four_Boons.html")
+def boons():
+    return render_template("boons.html")
 
 
 @app.route("/add_cash", methods=["GET", "POST"])
@@ -134,14 +134,13 @@ def logout():
     return redirect("/")
 
 
-@app.route("/quote", methods=["GET", "POST"])
+@app.route("/rewards", methods=["GET", "POST"])
 @login_required
-def quote():
-    """Get stock quote."""
+def rewards():
     if request.method == "GET":
-        return render_template("quote.html")
+        return render_template("rewards.html")
     else:
-        symbol = request.form.get("symbol")
+        date = request.form.get("date")
     if not symbol:
         return apology("Give a Symbol")
     # symbols are in upper case
