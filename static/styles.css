@@ -48,9 +48,9 @@ nav .navbar-brand {
   }
   
 .parentDiv {
+  font-weight: bold;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* grid-template-rows: 1fr 1fr 1fr; */
   width:100%;
   grid-gap:50px
   
@@ -59,13 +59,10 @@ nav .navbar-brand {
 .childDiv {
     width:700px;
     height:200px;
-    background-color:yellowgreen;
 }
 
 .childDiv:first-child {
-    background-color:red !important;
 }
 
 .childDiv:nth-child(3) {
-    background-color:coral;
 }

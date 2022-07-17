@@ -60,10 +60,10 @@ def history():
     return render_template("history.html", transactions=transactions_db)
 
 
-@app.route("/manage")
+@app.route("/Four_Boons")
 @login_required
-def manage():
-    return render_template("manage.html")
+def Four_Boons():
+    return render_template("Four_Boons.html")
 
 
 @app.route("/add_cash", methods=["GET", "POST"])
