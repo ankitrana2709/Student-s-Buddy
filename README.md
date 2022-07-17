@@ -1,7 +1,6 @@
 # Student's Buddy
  
-#### Video Demo: = https://youtu.be/1WdroM1oXII
-
+#### Video Demo: = https://www.youtube.com/watch?v=1WdroM1oXII
 #### Website URL = https://yesbuddy.herokuapp.com/
 
 #### Description: 
