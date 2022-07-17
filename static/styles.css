@@ -1,64 +1,75 @@
 /* Size for brand */
 nav .navbar-brand {
-    font-size: xx-large;
-  }
-  
-  /* Colors for brand */
-  nav .navbar-brand .blue {
-    color: #537fbe;
-  }
-  
-  nav .navbar-brand .red {
-    color: #ea433b;
-  }
-  
-  nav .navbar-brand .yellow {
-    color: #f5b82e;
-  }
-  
-  nav .navbar-brand .green {
-    color: #2e944b;
-  }
-  
-  body {
-    background-color: Aqua !important;
-    font-family: "Quicksand" !important;
-  }
-  
-  .bg-color {
-      background-color:rgba(255,127,80,.35) !important;
-  }
-  
-  #loginButton {
-    text-decoration: none;
-    color: red;
-  }
-  
-  .loginButtonStyling {
-    width: 125px;
-    height: 30px;
-    background-color: aliceblue;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    line-height: 30px;
-    border-radius: 5px;
-    border: 0.5px solid red;
-    padding: 2px;
-  }
-  
+  font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue {
+  color: #537fbe;
+}
+
+nav .navbar-brand .red {
+  color: #ea433b;
+}
+
+nav .navbar-brand .yellow {
+  color: #f5b82e;
+}
+
+nav .navbar-brand .green {
+  color: #2e944b;
+}
+
+body {
+  background-color: Aqua !important;
+  font-family: "Quicksand" !important;
+}
+
+.bg-color {
+  background-color: rgba(255, 127, 80, 0.35) !important;
+}
+
+#loginButton {
+  text-decoration: none;
+  color: red;
+}
+
+.loginButtonStyling {
+  width: 125px;
+  height: 30px;
+  background-color: aliceblue;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 5px;
+  border: 0.5px solid red;
+  padding: 2px;
+}
+
+.container {
+  font-weight: bold;
+  text-align: center;
+  font-size: 39px;
+  color: #707070;
+}
+.result {
+  font-weight: bold;
+  text-align: center;
+  font-size: 47px;
+  color: #454545;
+}
 .parentDiv {
   font-weight: bold;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width:100%;
-  grid-gap:50px
-  
+  width: 100%;
+  grid-gap: 50px;
 }
 
 .childDiv {
-    width:700px;
-    height:200px;
+  width: 700px;
+  height: 200px;
 }
 
 .childDiv:first-child {

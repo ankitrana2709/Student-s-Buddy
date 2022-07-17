@@ -1,11 +1,20 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Rewarded
+    Average
 {% endblock %}
 
 {% block main %}
     <!--<h1>Hello, {{ username }}</h1>-->
-    <h1>Your Average Hours for Last {{ Chours }} sitting is {{ Avg }} </h1>
-    <h1>Total Sitting for these days has been {{ Fhours }}</h1>
+    <h1 class="container">Your Average Hours for Last {{ list.1 }} sittings is {{ list.2 }} hrs. </h1>
+    <br><br><br>
+    <h1 class="container">Total Sitting for these sittings has been {{ list.0 }} hours.</h1>
+    <br><br>
+    {% if list.2 < 4 %} 
+        <h1 class ="result">Remarks: You need to work more.</h1>
+    {% elif list.2 > 4 %}
+        <h1 class ="result">Remarks: You are Working fair and will see the output soon.</h1>
+    {% else %}
+        <h1 class="result">Remarks: Very good, but can do a little better.</h1>
+    {% endif %}
 {% endblock %}
