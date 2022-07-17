@@ -134,21 +134,18 @@ def logout():
     return redirect("/")
 
 
-@app.route("/rewards", methods=["GET", "POST"])
+@app.route("/rewarded", methods=["GET", "POST"])
 @login_required
-def rewards():
+def rewarded():
     if request.method == "GET":
-        return render_template("rewards.html")
+        return render_template("rewarded.html")
     else:
-        date = request.form.get("date")
-    if not symbol:
-        return apology("Give a Symbol")
-    # symbols are in upper case
-    result = lookup(symbol.upper())
-    if result == None:
-        return apology("Symbol is not valid.")
-    return render_template("quoted.html", name=result["name"], price=usd(result["price"]), symbol=result["symbol"])
+        user_id = session["user_id"]
 
+        Fhours = db.execute("SELECT SUM(hours) FROM logbook WHERE user_id = ? ORDER BY id DESC", user_id)
+        Chours = db.execute("SELECT COUNT(hours) FROM logbook WHERE user_id = ? ORDER BY id DESC", user_id)
+        Avg = Fhours / Chours
+    return render_template("rewarded.html", Avg=Avg, Fhours=Fhours, Chours=Chours)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
