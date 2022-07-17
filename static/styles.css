@@ -22,6 +22,7 @@ nav .navbar-brand {
   
   body {
     background-color: Aqua !important;
+    font-family: "Quicksand" !important;
   }
   
   .bg-color {
@@ -45,3 +46,26 @@ nav .navbar-brand {
     border: 0.5px solid red;
     padding: 2px;
   }
+  
+.parentDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: 1fr 1fr 1fr; */
+  width:100%;
+  grid-gap:50px
+  
+}
+
+.childDiv {
+    width:700px;
+    height:200px;
+    background-color:yellowgreen;
+}
+
+.childDiv:first-child {
+    background-color:red !important;
+}
+
+.childDiv:nth-child(3) {
+    background-color:coral;
+}
