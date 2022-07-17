@@ -60,10 +60,10 @@ def history():
     return render_template("history.html", transactions=transactions_db)
 
 
-@app.route("/Manage")
+@app.route("/manage")
 @login_required
-def Manage():
-    return render_template("Manage.html")
+def manage():
+    return render_template("manage.html")
 
 
 @app.route("/add_cash", methods=["GET", "POST"])
