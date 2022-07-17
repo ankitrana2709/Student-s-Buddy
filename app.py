@@ -142,8 +142,8 @@ def average():
     else:
         user_id = session["user_id"]
 
-        Fhours = db.execute("SELECT SUM(hours) FROM logbook WHERE user_id = ? ORDER BY id DESC", user_id)
-        Chours = db.execute("SELECT COUNT(hours) FROM logbook WHERE user_id = ? ORDER BY id DESC", user_id)
+        Fhours = db.execute("SELECT SUM(hours) FROM logbook WHERE user_id = ? ", user_id)
+        Chours = db.execute("SELECT COUNT(hours) FROM logbook WHERE user_id = ? ", user_id)
         Avg = Fhours / Chours
     return render_template("average.html", Avg=Avg, Fhours=Fhours, Chours=Chours)
 
