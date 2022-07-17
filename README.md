@@ -12,10 +12,10 @@ a conditional remark based on your performance
 It also provides you with information about how to manage your tasks and gives your four boons
 related to your work.
 
-# Technologies used:
- # Python
- # HTML
- # CSS
- # JINJA
- # SQLITE3
- # HEROKU
+## Technologies used:
+ ### Python
+ ### HTML
+ ### CSS
+ ### JINJA
+ ### SQLITE3
+ ### HEROKU
