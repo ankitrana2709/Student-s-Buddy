@@ -21,12 +21,12 @@ nav .navbar-brand .green {
 }
 
 body {
-  background-color: Aqua !important;
+  background-color: rgba(200,216,228,.60) !important;
   font-family: "Quicksand" !important;
 }
 
 .bg-color {
-  background-color: rgba(255, 127, 80, 0.35) !important;
+  background-color: rgba(255, 127, 80, 0.25) !important;
 }
 
 #loginButton {

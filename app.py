@@ -166,18 +166,7 @@ def Add_Report():
         minutes = request.form.get("minutes")
         progress = request.form.get("progress")
         new_aim = request.form.get("new_aim")
-
-        # to check if it is empty
-        if not hours:
-            return apology("hours field is Empty.")
-        # to check if minutes is empty
-        if not minutes:
-            return apology("Minutes field is Empty.")
-        # to check if progress is empty
-        if not progress:
-            return apology("Progress is not Given.")
-        if not new_aim:
-            return apology("You have no Aim.")
+        
         try:
             progress = progress.upper()
             new_aim = new_aim.upper()
