@@ -71,9 +71,3 @@ body {
   width: 700px;
   height: 200px;
 }
-
-.childDiv:first-child {
-}
-
-.childDiv:nth-child(3) {
-}
