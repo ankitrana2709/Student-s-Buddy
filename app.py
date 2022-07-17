@@ -105,7 +105,8 @@ def average():
             0]["SUM(hours)"]
         Chours = db.execute("SELECT COUNT(hours) FROM logbook WHERE user_id = ? ", user_id)[
             0]["COUNT(hours)"]
-        Avg = Fhours / Chours
+        A = Fhours / Chours
+        Avg = round(A,2)
         list = [Fhours, Chours, Avg]
     return render_template("average.html", list=list)
 
