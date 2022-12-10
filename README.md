@@ -2,7 +2,7 @@
 
 #### Video Demo: = https://www.youtube.com/watch?v=1WdroM1oXII
 #### Website URL = https://yesbuddy.herokuapp.com/
-poetry export -f requirements.txt --output export requirements.txt
+poetry export -f requirements.txt --output requirements.txt
 ### Description:
 #### static folder:
  logo: i created this logo for this application and named it with colour and font name
